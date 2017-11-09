@@ -39,7 +39,16 @@
           activeClass="active"
           tag="li"><a>Players</a>
         </router-link>
-
+        <router-link to="/sign-up"
+          class="nav-item"
+          activeClass="active"
+          tag="li"><a>Register</a>
+        </router-link>
+        <router-link to="/sign-in"
+          class="nav-item"
+          activeClass="active"
+          tag="li"><a>Log In</a>
+        </router-link>
         <router-link to="/Word"
           class="nav-item"
           activeClass="active"
