@@ -86,9 +86,10 @@
           email: 'email required',
           username: 'username required',
           password: 'password must be 8 characters',
-          confirmPassword: 'must match password'
+          // confirmPassword: 'must match password'
         };
         console.log(order);
+        this.$store.dispatch('createPlayer', order);
       }
     }
   }

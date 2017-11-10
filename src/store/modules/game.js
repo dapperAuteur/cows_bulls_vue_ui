@@ -135,19 +135,31 @@ const mutations = {
   'SET_LIBRARY' (state, library) {
     state.library = library;
   },
+  'CREATE_PLAYER'(state, {firstName, lastName, email, username, password}) {
+    console.log(state);
+    state.player = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      username: username,
+      password: password
+    };
+    console.log(state);
+  },
   'SET_PLAYER' (state, player) {
-    if (player == undefined) {
-      state.player = {
-        id: 1,
-        email: "aweful@awews.com",
-        firstName: "",
-        middleName: "",
-        lastName: "",
-        gamesPlayed: 0
-      }
-    } else {
-      state.player = player;
-    }
+    console.log(state);
+    // if (player == undefined) {
+    //   state.player = {
+    //     id: 1,
+    //     email: "aweful@awews.com",
+    //     firstName: "",
+    //     middleName: "",
+    //     lastName: "",
+    //     gamesPlayed: 0
+    //   }
+    // } else {
+    //   state.player = player;
+    // }
   },
   'SET_PLAYERS' (state, players) {
     if (players == undefined) {
@@ -185,8 +197,11 @@ const actions = {
   setGameStatus: ({ commit }) => {
     commit('SET_GAME_STATUS');
   },
-  setPlayer: ({ commit }) => {
-    commit('SET_PLAYER');
+  createPlayer: ({ commit }, order) => {
+    commit('CREATE_PLAYER', order);
+  },
+  setPlayer: ({ commit }, order) => {
+    commit('SET_PLAYER', order);
   },
   setPlayers: ({ commit }) => {
     commit('SET_PLAYERS');
