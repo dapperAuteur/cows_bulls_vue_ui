@@ -3,9 +3,15 @@
     <h1>{{ msg }}</h1>
     <h2>Sign Up Today</h2>
     <section>
-        <b-field label="Name">
-            <b-input value="Kevin Garvey"
-              v-model="player.name">
+        <b-field label="firstName">
+            <b-input value="Kevin"
+              v-model="player.firstName">
+            </b-input>
+        </b-field>
+
+        <b-field label="lastName">
+            <b-input value="Garvey"
+              v-model="player.lastName">
             </b-input>
         </b-field>
 
@@ -58,7 +64,8 @@
       return {
         msg: 'Welcome to Cows && Bulls',
         player: {
-          name: 'name is optional',
+          firstName: 'firstName is optional',
+          lastName: 'lastName is optional',
           email: 'email required',
           username: 'username required',
           password: 'password must be 8 characters',
@@ -73,6 +80,15 @@
       }),
       createPlayer(){
         console.log(this.player);
+        const order = {
+          firstName: 'firstName is optional',
+          lastName: 'lastName is optional',
+          email: 'email required',
+          username: 'username required',
+          password: 'password must be 8 characters',
+          confirmPassword: 'must match password'
+        };
+        console.log(order);
       }
     }
   }
