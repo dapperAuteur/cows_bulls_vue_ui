@@ -79,7 +79,7 @@
           // fetchData: 'loadData'
       }),
       createPlayer(){
-        console.log(this.player);
+        // console.log(this.player);
         const order = {
           firstName: 'firstName is optional',
           lastName: 'lastName is optional',
@@ -90,6 +90,7 @@
         };
         console.log(order);
         this.$store.dispatch('createPlayer', order);
+        // this.$store.dispatch('createPlayer', order);
       }
     }
   }

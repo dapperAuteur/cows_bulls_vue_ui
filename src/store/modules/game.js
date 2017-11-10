@@ -145,6 +145,7 @@ const mutations = {
       password: password
     };
     console.log(state);
+    // this.$store.actions('savePlayer', order);
   },
   'SET_PLAYER' (state, player) {
     console.log(state);
