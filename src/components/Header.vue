@@ -7,33 +7,39 @@
             Cows && Bulls
           </router-link>
         </a>
-        <!-- <h1>Player Points: {{ gameStatus.playerPoints }}</h1> -->
-        <!-- <h1>Game Won: {{ gameStatus.won }}</h1> -->
+        <h1>Player Points: {{ gameStatus.score }}</h1>
+        <h1>Games Won: {{ gameStatus.games_won }}</h1>
+        <h1>Games Played: {{ gameStatus.games_played }}</h1>
     </div>
 
     <div class="nav-center">
       <ul class="nav navbar-nav">
-        <router-link to="/Game"
+        <router-link to="/game"
           class="nav-item"
           activeClass="active"
           tag="li"><a>Game</a>
+        </router-link>
+        <router-link to="/game-status"
+          class="nav-item"
+          activeClass="active"
+          tag="li"><a>Game Status</a>
         </router-link>
         <router-link to="/"
           class="nav-item"
           activeClass="active"
           tag="li"><a>Hello</a>
         </router-link>
-        <router-link to="/Letters"
+        <router-link to="/letters"
           class="nav-item"
           activeClass="active"
           tag="li"><a>Letters</a>
         </router-link>
-        <router-link to="/Library"
+        <router-link to="/library"
           class="nav-item"
           activeClass="active"
           tag="li"><a>Library</a>
         </router-link>
-        <router-link to="/Players"
+        <router-link to="/players"
           class="nav-item"
           activeClass="active"
           tag="li"><a>Players</a>
@@ -48,7 +54,7 @@
           activeClass="active"
           tag="li"><a>Log In</a>
         </router-link>
-        <router-link to="/Word"
+        <router-link to="/word"
           class="nav-item"
           activeClass="active"
           tag="li"><a>Word</a>
@@ -94,7 +100,7 @@
     },
     computed: {
       gameStatus() {
-        // return this.$store.state.words.gameStatus;
+        return this.$store.state.game;
       }
     },
     methods: {

@@ -27,7 +27,7 @@
     },
     created() {
       console.log("component created");
-      // this.$store.dispatch('initWords');
+      console.log(this.$store.state);
       this.fetchData();
       console.log(this.$store.state);
     }

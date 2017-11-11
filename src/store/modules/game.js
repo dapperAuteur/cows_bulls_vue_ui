@@ -4,6 +4,10 @@ const state = {
   attempts: 0,
   bulls: 0,
   cows: 0,
+  // game_id: X,
+  games_played: 0,
+  games_won: 0,
+  guess: {},
   guesses: [],
   high_scores: [],
   library: [],
@@ -18,38 +22,32 @@ const state = {
 
 const mutations = {
   'ADD_BULL' (state, { game }) {
-    // console.log(state);
     state.bulls++;
   },
   'ADD_COW' (state, { cows, bulls }) {
-    // console.log(state);
     state.cows++;
   },
   'COMPARE_GUESS_TO_WORD' (state, { guess, player }) {
     state.attempts++;
     const winning_word = state.winning_word;
-    // console.log(winning_word);
     const currentGuess =
     state.library.find(element => element.word == guess);
     if (currentGuess) {
-      // console.log("'" + currentGuess.word + "' is in the library.");
       if (winning_word == currentGuess) {
+        console.log(state);
         state.guesses.push(currentGuess);
-        state.game.score += 500;
+        state.score += 500;
         state.bulls = 4;
         state.cows = 0;
         state.won = true;
         state.games_won++;
         state.games_played++;
         state.message = "You Win! '" + currentGuess.word + "' is the word.";
-        // // console.log("You Win! " + currentGuess.word + " is the word.");
       } else {
         state.guesses.push(currentGuess);
-        // console.log("You didn't win yet. '" + currentGuess.word + "' is NOT the word.");
         state.message = "You didn't win yet. '" + currentGuess.word + "' is NOT the word.";
         const arrCurrentGuess = currentGuess.word.split("");
         const arrwinning_word = winning_word.word.split("");
-        // console.log(arrCurrentGuess);
         console.log(arrwinning_word);
         state.cows = 0;
         state.bulls = 0;
@@ -58,43 +56,37 @@ const mutations = {
             if(arrCurrentGuess[i] == arrwinning_word[j]){
               if(i == j){
                 state.bulls++;
-                state.playerPoints += 100;
+                state.score += 100;
                 state.won= false;
               } else {
                 state.cows++;
-                state.playerPoints += 50;
+                state.score += 50;
                 state.won = false;
               }
             };
           }
         }
-        state.playerPoints += 0;
+        state.score += 0;
         state.won = false;
         state.guesses = state.guesses;
         state.guess = currentGuess;
         state.winning_word = winning_word;
         state.cows = state.cows;
         state.bulls = state.bulls;
-        // console.log("cows: " + state.cows);
-        // console.log("bulls: " + state.bulls);
       }
     } else {
-      // state.word_to_consider_for_library.push(guess);
       state.cows = 0;
       state.bulls = 0;
-      // console.log("cows: " + state.cows);
-      // console.log("bulls: " + state.bulls);
-      state.playerPoints -= 200;
+      state.score -= 200;
       state.won = false;
-      // console.log("'" + guess + "' is NOT in the library.");
-      // console.log("We will consider adding your guess of '" + guess + "' to the library.");
       state.message = "'" + guess + "' is NOT in the library. " + "We will consider adding your guess of '" + guess + "' to the library.";
       state.word_to_consider_for_library.push({
+        // game: state.game_id,
         guess: guess,
         player: player
       });
-      // console.log(state.word_to_consider_for_library);
     }
+    console.log(state);
     return state;
   },
   'SET_GUESS' (state, { guess, player }) {

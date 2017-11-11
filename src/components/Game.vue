@@ -1,9 +1,7 @@
 <template>
   <div class="game">
-    <div class="gameWonFalse"
-      v-if="!gameStatus.won">
       <h1>{{ msg }}</h1>
-      <!-- <app-game-status></app-game-status> -->
+      <app-game-status></app-game-status>
       <h1>Cows && Bulls</h1>
       <h2>show me during the game</h2>
       <b-field>
@@ -26,25 +24,12 @@
         Compare Word
       </button>
       <!-- <app-letters></app-letters> -->
-    </div>
-    <div class="gameWonTrue"
-      v-if="gameStatus.won"
-      >
-      <!-- <app-game-status></app-game-status> -->
-      <h1>Cows && Bulls</h1>
-      <button
-        @click="playAgain"
-        >
-        Play Again?
-      </button>
-    </div>
-
   </div>
 </template>
 
 <script>
   import store from './../store/store';
-  // import GameStatus from './GameStatus';
+  import GameStatus from './GameStatus';
   // import Letters from './Letters';
 
   export default {
@@ -58,12 +43,11 @@
       }
     },
     components: {
-      // appGameStatus: GameStatus,
+      appGameStatus: GameStatus,
       // appLetters: Letters
     },
     computed: {
       gameStatus() {
-        console.log(this.$store.state.game);
         return this.$store.state.game;
       }
     },
@@ -75,30 +59,8 @@
         };
         console.log(order);
         this.$store.dispatch('compareWords', order);
-        // if(this.word == this.winning_word) {
-        //   console.log("You Win!");
-        //   console.log("The word is " + this.winning_word + ".");
-        // } else {
-        //   console.log(this.word + " is NOT the word.");
-        // }
       },
-      playAgain(){
-        console.log("PLAY AGAIN");
-        const data = {
-          bulls: this.$store.state.words.bulls,
-          cows: this.$store.state.words.cows,
-          gameStatus: this.$store.state.words.gameStatus,
-          guess: this.$store.state.words.guess,
-          guesses: this.$store.state.words.guesses,
-          library: this.$store.state.words.library,
-          winning_word: this.$store.state.words.winning_word,
-          word_to_consider_for_library: this.$store.state.words.word_to_consider_for_library
-        };
-        console.log(data);
-        this.$http.put('data.json', data);
-        this.$store.dispatch('randomWord');
 
-      },
       submitWord(){
         const order = {
           guess: this.word.toLowerCase(),

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Buefy from 'buefy'
 import Router from 'vue-router'
 import Game from '@/components/Game'
+import GameStatus from '@/components/GameStatus'
 import HelloWorld from '@/components/HelloWorld'
 import Letters from '@/components/Letters'
 import Library from '@/components/Library'
@@ -26,6 +27,11 @@ export default new Router({
       path: '/game',
       name: 'Game',
       component: Game
+    },
+    {
+      path: '/game-status',
+      name: 'GameStatus',
+      component: GameStatus
     },
     {
       path: '/letters',
