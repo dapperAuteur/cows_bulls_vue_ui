@@ -53,7 +53,7 @@
       return {
         msg: 'Make A Guess!',
         player: 'Earl',
-        winningWord: 'wins',
+        winning_word: 'wins',
         word: 'wisp',
       }
     },
@@ -63,21 +63,8 @@
     },
     computed: {
       gameStatus() {
-      //   return {
-      //   attempts: 0,
-      //   bulls: 0,
-      //   cows: 0,
-      //   guess: "",
-      //   guesses: [],
-      //   message: "What's The Word!?",//needs to be added to API
-      //   multiplayer: false,
-      //   score: 0,
-      //   winningWord: "",
-      //   won: false,
-      //   player: {},
-      //   winner: {}
-      // }
-        return this.$store.state.words.gameStatus;
+        console.log(this.$store.state.game);
+        return this.$store.state.game;
       }
     },
     methods: {
@@ -88,9 +75,9 @@
         };
         console.log(order);
         this.$store.dispatch('compareWords', order);
-        // if(this.word == this.winningWord) {
+        // if(this.word == this.winning_word) {
         //   console.log("You Win!");
-        //   console.log("The word is " + this.winningWord + ".");
+        //   console.log("The word is " + this.winning_word + ".");
         // } else {
         //   console.log(this.word + " is NOT the word.");
         // }
@@ -104,8 +91,8 @@
           guess: this.$store.state.words.guess,
           guesses: this.$store.state.words.guesses,
           library: this.$store.state.words.library,
-          winningWord: this.$store.state.words.winningWord,
-          wordToConsiderForLibrary: this.$store.state.words.wordToConsiderForLibrary
+          winning_word: this.$store.state.words.winning_word,
+          word_to_consider_for_library: this.$store.state.words.word_to_consider_for_library
         };
         console.log(data);
         this.$http.put('data.json', data);
@@ -123,7 +110,7 @@
         // call mutation to put guess into guesses array
         console.log("Guess is: " + this.$store.state.guess);
         console.log("Guesses list is: " + this.$store.state.guesses);
-        compareWords(winningWord, wordSubmitted);
+        compareWords(winning_word, wordSubmitted);
       },
     }
   }

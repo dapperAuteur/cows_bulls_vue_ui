@@ -1,17 +1,19 @@
 // import library from '../../data/library';
 
 const state = {
+  attempts: 0,
   bulls: 0,
   cows: 0,
-  gameStatus: {},
-  guess: {},
   guesses: [],
+  high_scores: [],
   library: [],
   player: {},
   players: [],
-  winningWord: {},
+  score: 0,
+  winning_word: {},
+  won: false,
   word: {},
-  wordToConsiderForLibrary: []
+  word_to_consider_for_library: []
 };
 
 const mutations = {
@@ -24,99 +26,76 @@ const mutations = {
     state.cows++;
   },
   'COMPARE_GUESS_TO_WORD' (state, { guess, player }) {
-    state.gameStatus.attemptsThisGame++;
-    const winningWord = state.winningWord;
-    // console.log(winningWord);
+    state.attempts++;
+    const winning_word = state.winning_word;
+    // console.log(winning_word);
     const currentGuess =
     state.library.find(element => element.word == guess);
     if (currentGuess) {
       // console.log("'" + currentGuess.word + "' is in the library.");
-      if (winningWord == currentGuess) {
+      if (winning_word == currentGuess) {
         state.guesses.push(currentGuess);
-        state.gameStatus.playerPoints += 500;
+        state.game.score += 500;
         state.bulls = 4;
         state.cows = 0;
-        state.gameStatus.won = true;
-        state.gameStatus.gamesWon++;
-        state.gameStatus.gamesPlayed++;
-        state.gameStatus.message = "You Win! '" + currentGuess.word + "' is the word.";
+        state.won = true;
+        state.games_won++;
+        state.games_played++;
+        state.message = "You Win! '" + currentGuess.word + "' is the word.";
         // // console.log("You Win! " + currentGuess.word + " is the word.");
       } else {
         state.guesses.push(currentGuess);
         // console.log("You didn't win yet. '" + currentGuess.word + "' is NOT the word.");
-        state.gameStatus.message = "You didn't win yet. '" + currentGuess.word + "' is NOT the word.";
+        state.message = "You didn't win yet. '" + currentGuess.word + "' is NOT the word.";
         const arrCurrentGuess = currentGuess.word.split("");
-        const arrWinningWord = winningWord.word.split("");
+        const arrwinning_word = winning_word.word.split("");
         // console.log(arrCurrentGuess);
-        console.log(arrWinningWord);
+        console.log(arrwinning_word);
         state.cows = 0;
         state.bulls = 0;
         for(var i = 0; i < arrCurrentGuess.length; i++){
-          for(var j = 0; j < arrWinningWord.length; j++){
-            if(arrCurrentGuess[i] == arrWinningWord[j]){
+          for(var j = 0; j < arrwinning_word.length; j++){
+            if(arrCurrentGuess[i] == arrwinning_word[j]){
               if(i == j){
                 state.bulls++;
-                state.gameStatus.playerPoints += 100;
-                state.gameStatus.won= false;
+                state.playerPoints += 100;
+                state.won= false;
               } else {
                 state.cows++;
-                state.gameStatus.playerPoints += 50;
-                state.gameStatus.won = false;
+                state.playerPoints += 50;
+                state.won = false;
               }
             };
           }
         }
-        state.gameStatus.playerPoints += 0;
-        state.gameStatus.won = false;
+        state.playerPoints += 0;
+        state.won = false;
         state.guesses = state.guesses;
         state.guess = currentGuess;
-        state.winningWord = winningWord;
+        state.winning_word = winning_word;
         state.cows = state.cows;
         state.bulls = state.bulls;
         // console.log("cows: " + state.cows);
         // console.log("bulls: " + state.bulls);
       }
     } else {
-      // state.wordToConsiderForLibrary.push(guess);
+      // state.word_to_consider_for_library.push(guess);
       state.cows = 0;
       state.bulls = 0;
       // console.log("cows: " + state.cows);
       // console.log("bulls: " + state.bulls);
-      state.gameStatus.playerPoints -= 200;
-      state.gameStatus.won = false;
+      state.playerPoints -= 200;
+      state.won = false;
       // console.log("'" + guess + "' is NOT in the library.");
       // console.log("We will consider adding your guess of '" + guess + "' to the library.");
-      state.gameStatus.message = "'" + guess + "' is NOT in the library. " + "We will consider adding your guess of '" + guess + "' to the library.";
-      state.wordToConsiderForLibrary.push({
+      state.message = "'" + guess + "' is NOT in the library. " + "We will consider adding your guess of '" + guess + "' to the library.";
+      state.word_to_consider_for_library.push({
         guess: guess,
         player: player
       });
-      // console.log(state.wordToConsiderForLibrary);
+      // console.log(state.word_to_consider_for_library);
     }
     return state;
-  },
-  'SET_GAME_STATUS' (state, gameStatus) {
-    // console.log(gameStatus);
-    if (gameStatus == undefined) {
-      state.gameStatus = {
-        attempts: 0,
-        bulls: 0,
-        cows: 0,
-        guess: "",
-        guesses: [],
-        message: "What's The Word!?",//needs to be added to API
-        multiplayer: false,
-        score: 0,
-        winningWord: "",
-        won: false,
-        player: {},
-        winner: {}
-      }
-    } else {
-      state.gameStatus = gameStatus;
-      // console.log(gameStatus);
-    }
-
   },
   'SET_GUESS' (state, { guess, player }) {
     const record = state.guesses.find(element => element == guess);
@@ -171,7 +150,10 @@ const mutations = {
   },
   'RND_WORD' (state) {
     // choose random word that the player needs to guess.
-    state.winningWord = state.library[Math.floor(Math.random() * state.library.length)];
+    console.log(state.winning_word);
+    console.log(state.library);
+    state.winning_word = state.library[Math.floor(Math.random() * state.library.length)];
+    console.log(state.winning_word);
   }
 };
 
@@ -195,9 +177,6 @@ const actions = {
   randomWord: ({ commit }) => {
     commit('RND_WORD');
   },
-  setGameStatus: ({ commit }) => {
-    commit('SET_GAME_STATUS');
-  },
   createPlayer: ({ commit }, order) => {
     console.log(order);
     commit('CREATE_PLAYER', order);
@@ -220,9 +199,6 @@ const getters = {
   cows: state => {
     return state.cows;
   },
-  gameStatus: state => {
-    return state.gameStatus;
-  },
   guess: state => {
     return state.guess;
   },
@@ -238,11 +214,11 @@ const getters = {
   players: state => {
     return state.players;
   },
-  winningWord: state => {
-    return state.winningWord;
+  winning_word: state => {
+    return state.winning_word;
   },
-  wordToConsiderForLibrary: state => {
-    return state.wordToConsiderForLibrary;
+  word_to_consider_for_library: state => {
+    return state.word_to_consider_for_library;
   }
 };
 

@@ -21,18 +21,14 @@
           fetchData: 'loadData',
       }),
       loadData() {
-        console.log(this.$store.state.words)
-        this.fetchData();
-        console.log(this.$store.state.words);
-        this.$store.dispatch('setGameStatus');
+        console.log('loadData');
+        console.log(this.$store.state);
       }
     },
     created() {
       console.log("component created");
       // this.$store.dispatch('initWords');
       this.fetchData();
-      this.$store.dispatch('randomWord');
-      this.$store.dispatch('setGameStatus');
       console.log(this.$store.state);
     }
   }

@@ -6,7 +6,6 @@
             class="navbar-brand">
             Cows && Bulls
           </router-link>
-            <!-- <img src="../../../assets/buefy.png" alt="Buefy"> -->
         </a>
         <!-- <h1>Player Points: {{ gameStatus.playerPoints }}</h1> -->
         <!-- <h1>Game Won: {{ gameStatus.won }}</h1> -->
@@ -90,7 +89,7 @@
         // gameStatus: this.$store.state.words.gameStatus,
         isDropdownOpen: false,
         navigation: 'home',
-        winningWord: ''
+        winning_word: ''
       }
     },
     computed: {
@@ -106,7 +105,7 @@
       chooseWord() {
         console.log(1);
         this.randomWord();
-        console.log(this.$store.getters.winningWord.word);
+        console.log(this.$store.getters.winning_word.word);
       },
       isLoggedIn() {
         return this.authenticated = !this.authenticated;
@@ -119,8 +118,8 @@
           guess: this.$store.getters.guess,
           guesses: this.$store.getters.guesses,
           library: this.$store.getters.library,
-          winningWord: this.$store.getters.winningWord,
-          wordToConsiderForLibrary: this.$store.getters.wordToConsiderForLibrary,
+          winning_word: this.$store.getters.winning_word,
+          word_to_consider_for_library: this.$store.getters.word_to_consider_for_library,
           bulls: this.$store.state.words.bulls,
           cows: this.$store.state.words.cows,
           gameStatus: this.$store.state.words.gameStatus,
@@ -128,8 +127,8 @@
           guesses: this.$store.state.words.guesses,
           library: this.$store.state.words.library,
           player: this.$store.state.words.player,
-          winningWord: this.$store.state.words.winningWord,
-          wordToConsiderForLibrary: this.$store.state.words.wordToConsiderForLibrary
+          winning_word: this.$store.state.words.winning_word,
+          word_to_consider_for_library: this.$store.state.words.word_to_consider_for_library
         };
         console.log(data);
         this.$http.put('game-statuses', data.gameStatus);

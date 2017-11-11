@@ -100,7 +100,7 @@
 
             var newPlayerId = response.data.id;
             console.log(newPlayerId);
-            this.$router.push('/players/' + newPlayerId);
+            this.$router.push('/game/' + newPlayerId);
           })
       }
     }

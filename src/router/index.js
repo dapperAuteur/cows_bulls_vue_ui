@@ -6,6 +6,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Letters from '@/components/Letters'
 import Library from '@/components/Library'
 import Player from '@/components/Player'
+import PlayerProfile from '@/components/PlayerProfile'
 import Players from '@/components/Players'
 import SignIn from '@/components/SignIn'
 import SignUp from '@/components/SignUp'
@@ -39,7 +40,7 @@ export default new Router({
     {
       path: '/players/:id',
       name: 'Player',
-      component: Player
+      component: PlayerProfile
     },
     {
       path: '/players',

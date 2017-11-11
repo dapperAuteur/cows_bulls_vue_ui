@@ -33,7 +33,7 @@
         // console.log("The Game Has Started!");
         // console.log(1);
         // this.randomWord();
-        // console.log(this.$store.getters.winningWord);
+        // console.log(this.$store.getters.winning_word);
       }
     }
   }
