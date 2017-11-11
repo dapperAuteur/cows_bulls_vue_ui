@@ -58,29 +58,23 @@ const mutations = {
                 state.bulls++;
                 state.score += 100;
                 state.won= false;
-                arr_current_guess[i] = arr_current_guess[i] + 0;
-                arr_winning_word[j] = arr_winning_word[j] + 1;
+                arr_current_guess[i] = 0;
+                arr_winning_word[j] = 0;
                 console.log(arr_current_guess);
                 console.log("bulls: " + state.bulls);
                 console.log("cows: " + state.cows);
+              } else {
+                console.log(arr_current_guess);
+                arr_dummy_guess.push(arr_current_guess[i]);
+                // console.log("arr_dummy_guess");
+                console.log(arr_dummy_guess);
+                state.cows++;
+                state.score += 50;
+                state.won = false;
+                arr_current_guess[i] = 0;
+                arr_winning_word[j] = 0;
               }
-            }
-            if(arr_current_guess[i] == arr_winning_word[j]){
-              // console.log(arr_current_guess);
-              // console.log(arr_winning_word);
-              // console.log(arr_current_guess);
-              arr_dummy_guess.push(arr_current_guess[i]);
-              // console.log("arr_dummy_guess");
-              // console.log(arr_dummy_guess);
-              console.log(arr_current_guess[i]);
-              console.log("cow");
-              console.log(i + ":" + j);
-              state.cows++;
-              state.score += 50;
-              state.won = false;
-              arr_current_guess[i] = arr_current_guess[i] + 0;
-              arr_winning_word[j] = arr_winning_word[j] + 1;
-            }
+            };
           }
         }
         state.score += 0;
