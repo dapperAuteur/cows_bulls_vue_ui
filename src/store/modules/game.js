@@ -199,6 +199,7 @@ const actions = {
     commit('SET_GAME_STATUS');
   },
   createPlayer: ({ commit }, order) => {
+    console.log(order);
     commit('CREATE_PLAYER', order);
   },
   setPlayer: ({ commit }, order) => {

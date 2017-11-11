@@ -64,12 +64,12 @@
       return {
         msg: 'Welcome to Cows && Bulls',
         player: {
-          firstName: 'firstName is optional',
-          lastName: 'lastName is optional',
-          email: 'email required',
-          username: 'username required',
-          password: 'password must be 8 characters',
-          confirmPassword: 'must match password'
+          firstName: 'firstName',
+          lastName: 'lastName',
+          email: 'required',
+          username: 'required',
+          password: '',
+          confirmPassword: ''
         }
       }
     },
@@ -79,18 +79,29 @@
           // fetchData: 'loadData'
       }),
       createPlayer(){
-        // console.log(this.player);
+        console.log(this.player);
         const order = {
-          firstName: 'firstName is optional',
-          lastName: 'lastName is optional',
-          email: 'email required',
-          username: 'username required',
-          password: 'password must be 8 characters',
+          firstName: this.player.firstName,
+          lastName: this.player.lastName,
+          email: this.player.email,
+          username: this.player.username,
+          password: this.player.password,
           // confirmPassword: 'must match password'
         };
         console.log(order);
         this.$store.dispatch('createPlayer', order);
-        // this.$store.dispatch('createPlayer', order);
+        // this.$store.dispatch('savePlayer', order);
+        this.$http.post('players', order)
+          .then(response => {
+            console.log(response);
+            console.log(response.data);
+            // commit('createPlayer', response.data);
+            // commit('selectCompany', response.data.data);
+
+            var newPlayerId = response.data.id;
+            console.log(newPlayerId);
+            this.$router.push('/players/' + newPlayerId);
+          })
       }
     }
   }

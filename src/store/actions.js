@@ -37,19 +37,14 @@ export const loadData = ({ commit }) => {
   // });
 }
 
-export const savePlayer = ({ commit }) => {
-  console.log(commit);
-
+export const savePlayer = ({ commit }, order) => {
   Vue.axios.post('players')
   .then(response => response.data)
   .then(data => {
     if (data) {
-      console.log(data);
+      // console.log(data);
       const player = data;
-      // console.log(player);
-      // console.log(store.state);
       commit('SET_PLAYER', player);
-      // console.log(store.state);
     }
   });
 }

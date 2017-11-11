@@ -37,7 +37,7 @@ export default new Router({
       component: Library
     },
     {
-      path: '/player',
+      path: '/players/:id',
       name: 'Player',
       component: Player
     },
