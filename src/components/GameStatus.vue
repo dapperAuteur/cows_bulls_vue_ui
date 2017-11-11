@@ -1,6 +1,7 @@
 <template>
   <div class="gameStatus">
     <h1>{{ gameStatus.message }}</h1>
+    <h1>Winning Word: {{ gameStatus.winning_word.word }}</h1>
     <h1>Cows: {{ gameStatus.cows }}</h1> <h1>Bulls: {{ gameStatus.bulls }}</h1>
     <h1>Attempts This Game: {{ gameStatus.attempts }}</h1>
     <div class="gameWonFalse"

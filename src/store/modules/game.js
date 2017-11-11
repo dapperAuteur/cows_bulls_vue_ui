@@ -16,7 +16,7 @@ const state = {
   score: 0,
   winning_word: {},
   won: false,
-  word: {},
+  // word: {},
   word_to_consider_for_library: []
 };
 
@@ -34,7 +34,6 @@ const mutations = {
     state.library.find(element => element.word == guess);
     if (currentGuess) {
       if (winning_word == currentGuess) {
-        console.log(state);
         state.guesses.push(currentGuess);
         state.score += 500;
         state.bulls = 4;
@@ -46,22 +45,34 @@ const mutations = {
       } else {
         state.guesses.push(currentGuess);
         state.message = "You didn't win yet. '" + currentGuess.word + "' is NOT the word.";
-        const arrCurrentGuess = currentGuess.word.split("");
-        const arrwinning_word = winning_word.word.split("");
-        console.log(arrwinning_word);
+        const arr_current_guess = currentGuess.word.split("");
+        const arr_winning_word = winning_word.word.split("");
         state.cows = 0;
         state.bulls = 0;
-        for(var i = 0; i < arrCurrentGuess.length; i++){
-          for(var j = 0; j < arrwinning_word.length; j++){
-            if(arrCurrentGuess[i] == arrwinning_word[j]){
+        var arr_dummy_guess = [];
+        for(var i = 0; i < arr_current_guess.length; i++){
+          for(var j = 0; j < arr_winning_word.length; j++){
+            if(arr_current_guess[i] == arr_winning_word[j]){
               if(i == j){
+                console.log(arr_current_guess[i]);
                 state.bulls++;
                 state.score += 100;
                 state.won= false;
+                arr_current_guess[i] = 0;
+                arr_winning_word[j] = 0;
+                console.log(arr_current_guess);
+                console.log("bulls: " + state.bulls);
+                console.log("cows: " + state.cows);
               } else {
+                console.log(arr_current_guess);
+                arr_dummy_guess.push(arr_current_guess[i]);
+                // console.log("arr_dummy_guess");
+                console.log(arr_dummy_guess);
                 state.cows++;
                 state.score += 50;
                 state.won = false;
+                arr_current_guess[i] = 0;
+                arr_winning_word[j] = 0;
               }
             };
           }
