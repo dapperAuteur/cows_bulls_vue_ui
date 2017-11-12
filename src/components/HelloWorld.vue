@@ -3,11 +3,26 @@
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <router-link
+      :to="{ path: '/sign-in' }"
+      class="btn btn-primary"
+      >
+      Log In
+    </router-link>
+    |
+    <router-link
+      :to="{ path: '/sign-up' }"
+      class="btn btn-primary"
+      >
+      Sign Up
+    </router-link>
+    |
+    <router-link
       :to="{ path: '/game' }"
       class="btn btn-primary"
-      @click.native="startGame">
+      >
       Start Game
     </router-link>
+
     <ul>
       <li><a href="http://www.dictionary.com/" target="_blank">English Dictionary</a></li>
       <li><a href="http://www.spanishdict.com/" target="_blank">Spanish Dictionary</a></li>
