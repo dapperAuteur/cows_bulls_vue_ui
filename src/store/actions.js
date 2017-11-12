@@ -23,11 +23,11 @@ export const loadData = ({ commit }) => {
 }
 
 export const savePlayer = ({ commit }, order) => {
-  Vue.axios.post('players')
+  Vue.axios.post('players', order)
   .then(response => response.data)
   .then(data => {
     if (data) {
-      // console.log(data);
+      console.log(data);
       const player = data;
       commit('SET_PLAYER', player);
     }

@@ -89,19 +89,7 @@
           // confirmPassword: 'must match password'
         };
         console.log(order);
-        this.$store.dispatch('createPlayer', order);
-        // this.$store.dispatch('savePlayer', order);
-        this.$http.post('players', order)
-          .then(response => {
-            console.log(response);
-            console.log(response.data);
-            // commit('createPlayer', response.data);
-            // commit('selectCompany', response.data.data);
-
-            var newPlayerId = response.data.id;
-            console.log(newPlayerId);
-            this.$router.push('/game/' + newPlayerId);
-          })
+        this.$store.dispatch('savePlayer', order);
       }
     }
   }

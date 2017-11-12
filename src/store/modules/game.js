@@ -133,22 +133,14 @@ const mutations = {
       password: password
     };
     console.log(state);
-    // this.$store.actions('savePlayer', order);
+    // console.log(crud.savePlayer);
   },
   'SET_PLAYER' (state, player) {
     console.log(state);
-    // if (player == undefined) {
-    //   state.player = {
-    //     id: 1,
-    //     email: "aweful@awews.com",
-    //     firstName: "",
-    //     middleName: "",
-    //     lastName: "",
-    //     gamesPlayed: 0
-    //   }
-    // } else {
-    //   state.player = player;
-    // }
+    if (player == undefined) {
+    } else {
+      state.player = player;
+    }
   },
   'SET_PLAYERS' (state, players) {
     if (players == undefined) {
