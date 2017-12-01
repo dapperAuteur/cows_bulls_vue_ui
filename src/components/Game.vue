@@ -1,9 +1,7 @@
 <template>
   <div class="game">
-    <div class="gameWonFalse"
-      v-if="!gameStatus.won">
       <h1>{{ msg }}</h1>
-      <!-- <app-game-status></app-game-status> -->
+      <app-game-status></app-game-status>
       <h1>Cows && Bulls</h1>
       <h2>show me during the game</h2>
       <b-field>
@@ -26,25 +24,12 @@
         Compare Word
       </button>
       <!-- <app-letters></app-letters> -->
-    </div>
-    <div class="gameWonTrue"
-      v-if="gameStatus.won"
-      >
-      <!-- <app-game-status></app-game-status> -->
-      <h1>Cows && Bulls</h1>
-      <button
-        @click="playAgain"
-        >
-        Play Again?
-      </button>
-    </div>
-
   </div>
 </template>
 
 <script>
   import store from './../store/store';
-  // import GameStatus from './GameStatus';
+  import GameStatus from './GameStatus';
   // import Letters from './Letters';
 
   export default {
@@ -53,31 +38,17 @@
       return {
         msg: 'Make A Guess!',
         player: 'Earl',
-        winningWord: 'wins',
+        winning_word: 'wins',
         word: 'wisp',
       }
     },
     components: {
-      // appGameStatus: GameStatus,
+      appGameStatus: GameStatus,
       // appLetters: Letters
     },
     computed: {
       gameStatus() {
-      //   return {
-      //   attempts: 0,
-      //   bulls: 0,
-      //   cows: 0,
-      //   guess: "",
-      //   guesses: [],
-      //   message: "What's The Word!?",//needs to be added to API
-      //   multiplayer: false,
-      //   score: 0,
-      //   winningWord: "",
-      //   won: false,
-      //   player: {},
-      //   winner: {}
-      // }
-        return this.$store.state.game.gameStatus;
+        return this.$store.state.game;
       }
     },
     methods: {
@@ -88,30 +59,8 @@
         };
         console.log(order);
         this.$store.dispatch('compareWords', order);
-        // if(this.word == this.winningWord) {
-        //   console.log("You Win!");
-        //   console.log("The word is " + this.winningWord + ".");
-        // } else {
-        //   console.log(this.word + " is NOT the word.");
-        // }
       },
-      playAgain(){
-        console.log("PLAY AGAIN");
-        const data = {
-          bulls: this.$store.state.words.bulls,
-          cows: this.$store.state.words.cows,
-          gameStatus: this.$store.state.words.gameStatus,
-          guess: this.$store.state.words.guess,
-          guesses: this.$store.state.words.guesses,
-          library: this.$store.state.words.library,
-          winningWord: this.$store.state.words.winningWord,
-          wordToConsiderForLibrary: this.$store.state.words.wordToConsiderForLibrary
-        };
-        console.log(data);
-        this.$http.put('data.json', data);
-        this.$store.dispatch('randomWord');
 
-      },
       submitWord(){
         const order = {
           guess: this.word.toLowerCase(),
@@ -123,7 +72,7 @@
         // call mutation to put guess into guesses array
         console.log("Guess is: " + this.$store.state.guess);
         console.log("Guesses list is: " + this.$store.state.guesses);
-        compareWords(winningWord, wordSubmitted);
+        compareWords(winning_word, wordSubmitted);
       },
     }
   }
