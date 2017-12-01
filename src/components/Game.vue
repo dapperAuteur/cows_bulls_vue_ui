@@ -77,7 +77,7 @@
       //   player: {},
       //   winner: {}
       // }
-        return this.$store.state.words.gameStatus;
+        return this.$store.state.game.gameStatus;
       }
     },
     methods: {

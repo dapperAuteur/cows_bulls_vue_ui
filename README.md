@@ -14,6 +14,8 @@
 #### Player 1 doesn't say which letter is the Cow or Bull.
 #### The game continues until Player 2 has 4 Bulls.
 
+#### API is built using Elixir/Phoenix and is hosted at: https://peaceful-forest-74170.herokuapp.com/api/0001/players/
+
 ## Build Setup
 
 ``` bash
