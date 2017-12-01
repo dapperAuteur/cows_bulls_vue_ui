@@ -13,8 +13,10 @@
     "test": "npm run unit && npm run e2e"
   },
   "dependencies": {
+    "auth0-js": "^8.11.2",
     "axios": "^0.17.0",
     "buefy": "^0.5.4",
+    "jwt-decode": "^2.2.0",
     "vue": "^2.5.2",
     "vue-axios": "^2.0.2",
     "vue-router": "^3.0.1",

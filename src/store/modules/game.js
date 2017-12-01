@@ -16,21 +16,17 @@ const state = {
 
 const mutations = {
   'ADD_BULL' (state, { game }) {
-    // console.log(state);
     state.bulls++;
   },
   'ADD_COW' (state, { cows, bulls }) {
-    // console.log(state);
     state.cows++;
   },
   'COMPARE_GUESS_TO_WORD' (state, { guess, player }) {
     state.gameStatus.attemptsThisGame++;
     const winningWord = state.winningWord;
-    // console.log(winningWord);
     const currentGuess =
     state.library.find(element => element.word == guess);
     if (currentGuess) {
-      // console.log("'" + currentGuess.word + "' is in the library.");
       if (winningWord == currentGuess) {
         state.guesses.push(currentGuess);
         state.gameStatus.playerPoints += 500;
@@ -40,14 +36,11 @@ const mutations = {
         state.gameStatus.gamesWon++;
         state.gameStatus.gamesPlayed++;
         state.gameStatus.message = "You Win! '" + currentGuess.word + "' is the word.";
-        // // console.log("You Win! " + currentGuess.word + " is the word.");
       } else {
         state.guesses.push(currentGuess);
-        // console.log("You didn't win yet. '" + currentGuess.word + "' is NOT the word.");
         state.gameStatus.message = "You didn't win yet. '" + currentGuess.word + "' is NOT the word.";
         const arrCurrentGuess = currentGuess.word.split("");
         const arrWinningWord = winningWord.word.split("");
-        // console.log(arrCurrentGuess);
         console.log(arrWinningWord);
         state.cows = 0;
         state.bulls = 0;
@@ -73,30 +66,21 @@ const mutations = {
         state.winningWord = winningWord;
         state.cows = state.cows;
         state.bulls = state.bulls;
-        // console.log("cows: " + state.cows);
-        // console.log("bulls: " + state.bulls);
       }
     } else {
-      // state.wordToConsiderForLibrary.push(guess);
       state.cows = 0;
       state.bulls = 0;
-      // console.log("cows: " + state.cows);
-      // console.log("bulls: " + state.bulls);
       state.gameStatus.playerPoints -= 200;
       state.gameStatus.won = false;
-      // console.log("'" + guess + "' is NOT in the library.");
-      // console.log("We will consider adding your guess of '" + guess + "' to the library.");
       state.gameStatus.message = "'" + guess + "' is NOT in the library. " + "We will consider adding your guess of '" + guess + "' to the library.";
       state.wordToConsiderForLibrary.push({
         guess: guess,
         player: player
       });
-      // console.log(state.wordToConsiderForLibrary);
     }
     return state;
   },
   'SET_GAME_STATUS' (state, gameStatus) {
-    // console.log(gameStatus);
     if (gameStatus == undefined) {
       state.gameStatus = {
         attempts: 0,
@@ -114,7 +98,6 @@ const mutations = {
       }
     } else {
       state.gameStatus = gameStatus;
-      // console.log(gameStatus);
     }
 
   },

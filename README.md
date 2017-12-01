@@ -2,6 +2,18 @@
 
 > ui for cows and bulls word game
 
+## Description:
+#### Cows & Bulls is a word game that a friend taught me while we were driving through the mountains of Guatemala. We used it as a tool to calm us. It helped us relieve the anxiety of driving with near 0 visibility on poor mountain roads during the rain storms.
+
+## Rules:
+#### Player 1 thinks of a four letter word and Player 2 must guess the word.
+#### After each guess, Player 1 replies with the number of Cows and Bulls Player 2 has.
+#### A Cow means that the guess has the correct letter but in the wrong place.
+#### A Bull means the guess has the correct letter in the correct place.
+#### Each guess resets the number of Cows and Bulls.
+#### Player 1 doesn't say which letter is the Cow or Bull.
+#### The game continues until Player 2 has 4 Bulls.
+
 ## Build Setup
 
 ``` bash

@@ -11,6 +11,8 @@ import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios);
 
 Vue.axios.defaults.baseURL = 'http://localhost:4000/api/0001/';
+// The deployed api. The words aren't in the deployed library.
+// Vue.axios.defaults.baseURL = 'https://peaceful-forest-74170.herokuapp.com/api/0001/'
 
 Vue.filter('to-lowercase', function(value) {
   return value.toLowerCase();
